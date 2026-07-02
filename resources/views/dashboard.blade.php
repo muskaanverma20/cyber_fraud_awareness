@@ -140,13 +140,27 @@ $rejectedReports = $reports->where('status','Rejected')->count();
             <div class="dashboard-top-right">
 
                 <!-- NOTIFICATION -->
-                <div class="dashboard-bell">
+                <div class="dashboard-bell" id="notificationBtn">
 
-                    <i class="far fa-bell"></i>
+    <i class="far fa-bell"></i>
 
-                    <span>3</span>
+    <span>3</span>
 
-                </div>
+    <div class="notification-box" id="notificationBox">
+
+        <h5>Notifications</h5>
+
+        <hr>
+
+        <p>📢 Complaint CF101 is Pending</p>
+
+        <p>✅ Complaint CF095 Resolved</p>
+
+        <p>🔔 Welcome to Cyber Fraud Portal</p>
+
+    </div>
+
+</div>
 
                 <!-- PROFILE -->
                 <div class="dashboard-user">
@@ -659,11 +673,43 @@ $rejectedReports = $reports->where('status','Rejected')->count();
     cursor:pointer;
     color:#111827 !important;
 }
+.dashboard-sidebar{
+    width:270px;
+    transition:0.3s ease;
+}
+
+.dashboard-sidebar.hideSidebar{
+    width:0;
+    min-width:0;
+    padding:0;
+    overflow:hidden;
+}
+
+.dashboard-main{
+    flex:1;
+    transition:0.3s ease;
+}
 
 .dashboard-top-right{
     display:flex;
     align-items:center;
     gap:25px;
+}
+@media(max-width:900px){
+
+    .dashboard-sidebar{
+        position:fixed;
+        left:-100%;
+        top:0;
+        height:100%;
+        width:270px;
+        z-index:1000;
+    }
+
+    .dashboard-sidebar.showSidebar{
+        left:0;
+    }
+
 }
 
 .dashboard-bell{
@@ -687,6 +733,32 @@ $rejectedReports = $reports->where('status','Rejected')->count();
     justify-content:center;
 }
 
+.notification-box{
+
+    position:absolute;
+    top:40px;
+    right:0;
+    width:280px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    padding:15px;
+    display:none;
+    z-index:999;
+}
+
+.notification-box.show{
+    display:block;
+}
+
+.notification-box h5{
+    margin-bottom:10px;
+}
+
+.notification-box p{
+    margin:8px 0;
+    font-size:14px;
+}
 .dashboard-user{
     display:flex;
     align-items:center;
@@ -1059,14 +1131,44 @@ $rejectedReports = $reports->where('status','Rejected')->count();
 </style>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-const menuToggle = document.getElementById("menuToggle");
-const sidebar = document.querySelector(".dashboard-sidebar");
+    const menuToggle = document.getElementById("menuToggle");
+    const sidebar = document.querySelector(".dashboard-sidebar");
 
-menuToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("showSidebar");
+    menuToggle.addEventListener("click", function () {
+
+        if (window.innerWidth <= 900) {
+
+            sidebar.classList.toggle("showSidebar");
+
+        } else {
+
+            sidebar.classList.toggle("hideSidebar");
+
+        }
+
+    });
+
+    // Notification
+
+    const bell = document.getElementById("notificationBtn");
+    const box = document.getElementById("notificationBox");
+
+    bell.addEventListener("click", function (e) {
+
+        e.stopPropagation();
+        box.classList.toggle("show");
+
+    });
+
+    document.addEventListener("click", function () {
+
+        box.classList.remove("show");
+
+    });
+
 });
-
 </script>
 
 @endsection
