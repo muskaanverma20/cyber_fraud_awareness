@@ -1,6 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
+@guest
+
+<div class="auth-overlay">
+
+    @include('signup')
+
+</div>
+
+<style>
+
+body{
+    overflow: hidden;
+}
+
+.auth-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 999999;
+    overflow-y: auto;
+}
+
+</style>
+
+@endguest
 
 <!-- HERO SECTION -->
 <section id="hero" class="position-relative home">

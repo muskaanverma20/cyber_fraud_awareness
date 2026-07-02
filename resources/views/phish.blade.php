@@ -1,8 +1,8 @@
-@extends('layouts.app')
+   @extends('layouts.app') 
 
 @section('content')
 
-<!-- 🔷 HERO SECTION -->
+<!-- HERO SECTION -->
 <section class="hero-section">
 
     <img src="{{ asset('img/phish-img.png') }}" class="hero-img">
@@ -24,7 +24,7 @@
 
 </section>
 
-<!-- 🔷 PHISHING SECTION -->
+<!-- PHISHING SECTION -->
 <section class="phishing-section">
     <div class="phishing-container">
 
@@ -177,4 +177,4 @@
 
 </section>
 
-@endsection
+@endsection 

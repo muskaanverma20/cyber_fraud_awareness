@@ -6,8 +6,8 @@
 <section class="hero-section">
         <img src="{{ asset('img/admin1_cleanup.webp') }}" class="hero-img" alt="hero">
     <div class=" hero-content  position-absolute top-40 m-5 s-0 translate-middle-y text-white ps-5">
-        <h1 class="hero-title ">Privacy Policy!</h1>
-            <p class="breadcrumb "><strong><a href="/">Home</a></strong>>&nbsp;Privacy Policy</p>
+        <h1 class="hero-title ">Terms & Conditions </h1>
+            <a href="/" class="text-blue text-decoration-none font-size-40">Home</a></spna>
         </div>
 </section>
 <section id="terms-body" class="term-body ">

@@ -19,8 +19,8 @@
 </div>
 </section>
 <section id="payment-sec" class=payment-body>
-<div class="cpf-main-wrapper">
-    <div class="cpf-section-header">
+<div class="cpf-main-wrapper mt-0 pt-0">
+    <div class="cpf-section-header mt-0 pt-0">
         <span class="cpf-line"></span>
         <h2 class="cpf-section-title">Common Payment Frauds</h2>
         <span class="cpf-line"></span>
@@ -75,7 +75,7 @@
             <p class="cpf-desc">Fraudulent apps and websites demanding advance payments or hidden charges.</p>
         </div>
     </div>
-    <div class="st-main-container">
+    <div class="st-main-container mt-0 pt-0">
     <div class="st-header">
         <span class="st-line"></span>
         <h2 class="st-title">Safety Tips</h2>
@@ -124,7 +124,7 @@
         </div>
     </div>
 </div>
-<div class="ip-main-wrapper">
+<div class="ip-main-wrapper mt-0 pt-0">
     <div class="ip-section-header">
         <span class="ip-line"></span>
         <h2 class="ip-section-title">Important Pages</h2>
@@ -174,7 +174,7 @@
     </div>
 </div>
 
-<div class="otp-section-wrapper">
+<div class="otp-section-wrapper mt-0 pt-0">
     <div class="otp-header">
         <span class="otp-header-line"></span>
         <h2 class="otp-header-title">Official & Trusted Portals</h2>

@@ -45,9 +45,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+/*sign up */
 
+window.addEventListener("DOMContentLoaded", () => {
 
+    const box = document.querySelector(".box-wrapper");
 
+    // default login show (active remove)
+    box.classList.remove("active");
+
+    // agar #signup ho to signup show
+    if(window.location.hash === "#signup"){
+        box.classList.add("active");
+    }
+
+});
 
 
 

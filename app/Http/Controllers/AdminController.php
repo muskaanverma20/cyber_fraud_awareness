@@ -2,36 +2,75 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Complaint;
+use App\Models\FraudReport;
+use App\Models\Contact;
+use App\Models\Alert;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
-        $complaints = [
-            (object)[
-                'id'=>101,'name'=>'Aman Singh','type'=>'Phishing','date'=>'2024-04-22','status'=>'Under'
-            ],
-            (object)[
-                'id'=>102,'name'=>'Karan Kumar','type'=>'UPI Fraud','date'=>'2024-04-18','status'=>'Resolved'
-            ],
-            (object)[
-                'id'=>102,'name'=>'Arjun Sharma','type'=>'Job Scam','date'=>'2024-04-22','status'=>'Pending'
-            ],
-     (object)[
-                'id'=>102,'name'=>'Priya Verma','type'=>'E-commerce Fraud','date'=>'2024-05-3','status'=>'Under'
-            ],
-     (object)[
-                'id'=>102,'name'=>'Rohit Arora','type'=>'UPI Fraud','date'=>'2024-05-18','status'=>'Rejected'
-            ],
-     
-        ];
+        // ONLY ADMIN ACCESS
+        if (auth()->user()->role !== 'admin') {
 
-        return view('admin.dashboard', [
-            'complaints'=>$complaints,
-            'total'=>125,
-            'pending'=>28,
-            'resolved'=>80
-        ]);
+            abort(403, 'Unauthorized Access');
+
+        }
+
+        // ALL COMPLAINTS
+        $complaints = Complaint::latest()->get();
+
+        // ALL FRAUD REPORTS
+        $fraudReports = FraudReport::latest()->get();
+
+        // ALL CONTACT MESSAGES
+        $contacts = Contact::latest()->get();
+
+        // ALL ALERTS
+        $alerts = Alert::latest()->get();
+
+        // TOTAL COUNTS
+        $totalComplaints = Complaint::count();
+
+        $totalReports = FraudReport::count();
+
+        $totalContacts = Contact::count();
+
+        $totalAlerts = Alert::count();
+
+        // STATUS COUNTS
+        $pendingComplaints = Complaint::where(
+            'status',
+            'Complaint Registered'
+        )->count();
+
+        $underInvestigation = Complaint::where(
+            'status',
+            'Under Investigation'
+        )->count();
+
+        $resolvedComplaints = Complaint::where(
+            'status',
+            'Action Taken'
+        )->count();
+
+        return view('admin.dashboard', compact(
+
+            'complaints',
+            'fraudReports',
+            'contacts',
+            'alerts',
+
+            'totalComplaints',
+            'totalReports',
+            'totalContacts',
+            'totalAlerts',
+
+            'pendingComplaints',
+            'underInvestigation',
+            'resolvedComplaints'
+
+        ));
     }
 }
