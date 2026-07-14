@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FraudReport;
 use App\Models\Complaint;
+use App\Models\Alert;
 
 class ReportController extends Controller
 {
@@ -138,7 +139,20 @@ class ReportController extends Controller
             'status'          => 'Complaint Registered'
 
         ]);
+  Alert::firstOrCreate(
 
+    [
+        'title' => $request->fraud_type
+    ],
+
+    [
+        'description' => $request->description,
+        'type' => $request->fraud_type,
+        'risk_level' => 'medium',
+        'alert_date' => now()->toDateString(),
+    ]
+
+);
 
         /*
         |--------------------------------------------------------------------------

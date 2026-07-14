@@ -11,17 +11,22 @@ return new class extends Migration
         Schema::create('alerts', function (Blueprint $table) {
             $table->id();
 
+            // Alert title
             $table->string('title');
+
+            // Detailed description of fraud alert
             $table->text('description');
 
-            // type: bank, upi, job etc
+            // Fraud type: bank, upi, job etc
             $table->string('type');
 
-            // risk level
+            // Risk level: low, medium, high
             $table->enum('risk_level', ['low', 'medium', 'high'])->default('medium');
 
-            $table->date('alert_date');
+            // Alert date (custom column)
+            $table->date('alert_date')->nullable();
 
+            // Laravel default timestamps (created_at, updated_at)
             $table->timestamps();
         });
     }
